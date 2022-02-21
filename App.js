@@ -1,7 +1,7 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
-
+import Header from "./src/components/Header";
 export default function App() {
   const [todoItem, setTodoItem] = useState("")
   const [todoList, setTodoList] = useState([])
@@ -12,26 +12,29 @@ export default function App() {
     setTodoItem("")
   }
   return (
-    <View style={styles.container}>
-      <View>
-        {/* <Text>To do App!</Text> */}
-        <TextInput
-        style={styles.textInput} 
-        placeholder="Write a to do."
-        onChangeText={text => setTodoItem(text)}
-        value={todoItem}
-        /> 
-        <Button
-          title="Add To do"
-          onPress={addTodoList}
-        />
+    <View>
+      <Header title="Todo List" />
+      <View style={styles.container}>
+        <View>
+          {/* <Text>To do App!</Text> */}
+          <TextInput
+            style={styles.textInput}
+            placeholder="Write a to do."
+            onChangeText={text => setTodoItem(text)}
+            value={todoItem}
+          />
+          <Button
+            title="Add To do"
+            onPress={addTodoList}
+          />
+        </View>
+        <ScrollView>
+          {
+            todoList.map((todo, index) => <View key={index} style={styles.todoItem}><Text>{todo}</Text></View>)
+          }
+        </ScrollView>
+        <StatusBar style="auto" />
       </View>
-      <ScrollView>
-        {
-          todoList.map((todo, index) => <View key={index} style={styles.todoItem}><Text>{todo}</Text></View>)
-        }
-      </ScrollView>
-      <StatusBar style="auto" />
     </View>
   );
 }
