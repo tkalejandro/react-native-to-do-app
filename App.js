@@ -1,10 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World!</Text>
+      <View>
+        {/* <Text>To do App!</Text> */}
+        <TextInput
+        style={styles.textInput} 
+        placeholder="Write a to do."/> 
+        <Button
+          title="Add To do"
+          onPress={() => console.log("hello")}
+        />
+      </View>
+      <View>
+        <Text>List of To do!</Text>
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -12,9 +24,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 60
   },
+  textInput: {
+    padding: 10,
+    borderColor: '#000000',
+    borderWidth: 1,
+    marginBottom: 10
+  }
 });
